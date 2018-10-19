@@ -1,15 +1,25 @@
-from flask import Flask, url_for
+from flask import Flask, url_for, render_template
 app = Flask(__name__)  # __main__
 
 
 @app.route('/')
 def index():
-    return "Hello world!"
+
+    with app.test_request_context():
+         link = url_for('hello_user', username='Sofia the best')
 
 
+    return render_template('index.html', link=link)
+
+@app.route('/user/')
 @app.route('/user/<username>')
-def hello_user(username):
-    return "Hello %s" % username
+def hello_user(username=None):
+    numbers = [0, 1, 2, 3, 4, 5, 6]
+    return render_template(
+        'userfile.html',
+        username=username,
+        numbers=numbers
+    )
 
 
 #def decorator(func):
@@ -22,8 +32,7 @@ def hello_user(username):
 #def test():
  #   print('test')
 
-with app.test_request_context():
-    print("http://localhost" + url_for('hello_user', username='Sofia the best'))
+
 
 
 if __name__ == '__main__':
