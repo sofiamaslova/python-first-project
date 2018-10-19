@@ -5,8 +5,17 @@
     <title>Our first page with Python</title>
 </head>
 <body>
-<h1>
-    <a href="{{ link }}">Sofia The Great</a>
-</h1>
+<h> Hello World!</h>
+{#<h1>#}
+{#    <a href="{{ link }}">Sofia The Great</a>#}
+{#</h1>#}
+{#<ul>#}
+{#    {% for title, link in links %}#}
+{#    <li>#}
+{#        <a href="{{ link }}"> {{ title }}</a>#}
+{#    </li>#}
+{#    {%  endfor %}#}
+{#</ul>#}
+{% include 'links.html' %}
 </body>
 </html>
