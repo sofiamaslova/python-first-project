@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Our first page with Python</title>
-    <link rel="stylesheet" href=" {{ url_for ('static', filename='main.css') }} ">
-</head>
-<body>
-<h> Hello World!</h>
-{#<h1>#}
-{#    <a href="{{ link }}">Sofia The Great</a>#}
-{#</h1>#}
-{#<ul>#}
-{#    {% for title, link in links %}#}
-{#    <li>#}
-{#        <a href="{{ link }}"> {{ title }}</a>#}
-{#    </li>#}
-{#    {%  endfor %}#}
-{#</ul>#}
-{% include 'links.html' %}
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Our first page with Python{% endblock %}
+{% block content %}
+    <h1> Hello World!</h1>
+{% endblock %}

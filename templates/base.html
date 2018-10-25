@@ -2,12 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Our first page with Python</title>
+    <title>{% block title %}Default title {% endblock %}</title>
     <link rel="stylesheet" href=" {{ url_for ('static', filename='main.css') }} ">
 </head>
 <body>
+<section id="header">
+    <ul class="navigation">
+    {% for title, link in links.items() %}
+    <li>
+       <a href="{{ link }}"> {{ title }}</a>
+    </li>
+   {%  endfor %}
+</ul>
+</section>
+<section id="content">
+    {% block content %}
+    {%  endblock %}
+</section>
 <h> Hello World!</h>
 
-{% include 'links.html' %}
 </body>
 </html>
