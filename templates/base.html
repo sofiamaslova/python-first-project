@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our first page with Python</title>
+    <link rel="stylesheet" href=" {{ url_for ('static', filename='main.css') }} ">
+</head>
+<body>
+<h> Hello World!</h>
+
+{% include 'links.html' %}
+</body>
+</html>
