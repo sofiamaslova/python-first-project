@@ -24,6 +24,7 @@ def generate_links():
             'Index with params': index_with_params_link,
         }
 
+    images =
 
     return links
 
