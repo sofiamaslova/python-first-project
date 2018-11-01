@@ -5,12 +5,23 @@ app = Flask(__name__)  # __main__
 @app.route('/')
 def index():
     links = generate_links()
-    images = [
-        {'src': 'https://images1.popmeh.ru/upload/img_cache/6be/6be92ece8078d7ff0ee207a73b31fe4f_ce_1920x1200x0x0_cropped_800x427.jpg', 'title': 'Бурдж-Халифа, Дубай'  },
-        {'src': 'https://fountravel.ru/wp-content/uploads/2016/02/Campanile-San-Marco-Venice-1.jpg', 'title': 'Сан-Марко, Венеция'}
+    slides = [
+        {'image_src': 'https://images1.popmeh.ru/upload/img_cache/6be/6be92ece8078d7ff0ee207a73b31fe4f_ce_1920x1200x0x0_cropped_800x427.jpg',
+         'title_src': 'Бурдж-Халифа, Дубай',
+         'heading': 'Бурдж-Халифа, Дубаи',
+         'explanation': 'Бурдж-Халифа - самое высокое здание в мире'},
+        {'image_src': 'https://fountravel.ru/wp-content/uploads/2016/02/Campanile-San-Marco-Venice-1.jpg', 'title_src': 'Сан-Марко, Венеция','heading': 'Бурдж-Халифа, Дубаи',
+         'explanation': 'Бурдж-Халифа - самое высокое здание в мире'},
+        {'image_src': 'https://planetofhotels.com/sites/default/files/styles/attractionimageoriginal/public/sobor_duomo_v_milane_1_0.jpg?itok=6h97nmsB',
+         'title_src': 'Дуомо, Милан'},
+        {'image_src': 'https://i.archi.ru/i/650/146330.jpg',
+         'title_src': 'Феррари Ворлд, Абу-Даби',
+         'heading': 'Феррари Ворлд, Абу-Даби',
+         'explanation': 'Тематический парк Феррари является крупнейшим в мире крытым парком, его территория занимает более 86 тысяч'}
+
     ]
 
-    return render_template('index.html', links=links, images=images)
+    return render_template('index.html', links=links, slides=slides)
 
 
 def generate_links():
