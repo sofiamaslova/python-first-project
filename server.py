@@ -5,12 +5,14 @@ app = Flask(__name__)  # __main__
 @app.route('/')
 def index():
     links = generate_links()
-    return render_template('index.html', links=links)
+    images = [
+        {'src': 'https://images1.popmeh.ru/upload/img_cache/6be/6be92ece8078d7ff0ee207a73b31fe4f_ce_1920x1200x0x0_cropped_800x427.jpg', 'title': 'Бурдж-Халифа, Дубай'  },
+        {'src': 'https://fountravel.ru/wp-content/uploads/2016/02/Campanile-San-Marco-Venice-1.jpg', 'title': 'Сан-Марко, Венеция'}
+    ]
+
+    return render_template('index.html', links=links, images=images)
 
 
-
-
-    return render_template('index.html', link=link)
 def generate_links():
     with app.test_request_context():
         danil_the_great_link = url_for('hello_user', username='"Danil the great')
@@ -24,7 +26,7 @@ def generate_links():
             'Index with params': index_with_params_link,
         }
 
-    images =
+
 
     return links
 
