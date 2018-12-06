@@ -33,4 +33,16 @@ ALTER TABLE `product`
 CHANGE COLUMN `title` `title` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ,
 CHANGE COLUMN `description` `description` VARCHAR(255) CHARACTER SET 'utf8' COLLATE 'utf8_general_ci' NULL DEFAULT NULL ;
 
+ALTER TABLE `shop`.`product`
+ADD COLUMN `image_id` INT NULL AFTER `category_id`,
+ADD INDEX `fk_images_idx` (`image_id` ASC);
+;
+ALTER TABLE `shop`.`product`
+ADD CONSTRAINT `fk_images`
+  FOREIGN KEY (`image_id`)
+  REFERENCES `shop`.`image` (`id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
 COMMIT;
+

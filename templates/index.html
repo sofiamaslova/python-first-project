@@ -33,11 +33,11 @@
                 <div class="carousel-item {{ class }}" width=50% height="400px" align="center">
                     <img width=50%
                          height="400px"
-                         src="{{ slide.image_src }}"
-                         alt="{{ slide.title_src }}">
+                         src="{{ slide.image_url }}"
+                         alt="{{ slide.description }}">
                     <div class="carousel-caption text-left" width=50% height="400px" align="center">
-                        <h1>{{ slide.heading }}</h1>
-                        <p>{{ slide.explanation }}</p>
+                        <h1>{{ slide.title }}</h1>
+                        <p>{{ slide.description }}</p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Закажи сейчас</a></p>
                     </div>
                 </div>
@@ -58,16 +58,16 @@
 {% block carddeck %}
 
     <div class="card-deck">
-        {% for product in slides %}
+        {% for slide in slides %}
             <div class="card" style="width:400px">
                 <img class="card-img-top"
-                     src="{{ product.image_src }}"
-                     alt="{{ product.title_src }}" />
+                     src="{{ slide.image_url }}"
+                     alt="{{ slide.description }}" />
                 <div class="card-body">
-                    <h5 class="card-title">{{  product.heading }}</h5>
-                    <p class="card-text">{{ product.explanation }}</p>
+                    <h5 class="card-title">{{  slide.title }}</h5>
+                    <p class="card-text">{{ slide.description }}</p>
                     <div class="card-footer">
-                        <a href="#" class="btn btn-primary" card >ÐšÑƒÐ¿Ð¸Ñ‚ÑŒ</a>
+                        <a href="#" class="btn btn-primary" card >Купить</a>
                     </div>
                 </div>
             </div>
