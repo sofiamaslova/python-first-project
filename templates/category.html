@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Our first page with Python{% endblock %}
+
+
+{% block breadcrumb %}
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+    </nav>
+{%  endblock %}
+
+
+
+{% block carddeck %}
+
+    <div class="card-deck">
+        {% for product in products %}
+            <div class="card" style="width:400px">
+                <img class="card-img-top"
+                     src="{{ product.image_url }}"
+                     alt="{{ product.description }}" />
+                <div class="card-body">
+                    <h5 class="card-title">{{  product.title }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                        {% if product.price %}
+                            <small class="text-bold"> {{ product.price }} р.</small>
+                        {% else %}
+                            <small class="text-bold">Нет в наличии</small>
+
+                        {% endif %}
+                    <div class="card-footer">
+                        <a href="#" class="btn btn-primary" card >Купить</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

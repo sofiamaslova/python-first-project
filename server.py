@@ -15,24 +15,27 @@ connection = pymysql.connect(
 
 @app.route('/test/')
 def test():
-    cursor = connection.cursor()
-    cursor.execute('SELECT * FROM product')
-    result = cursor.fetchall()
+    with connection.cursor() as cursor:
+    #cursor = connection.cursor()
+        cursor.execute('SELECT * FROM product')
+        result = cursor.fetchall()
 
     return str(result)
 
 
 @app.route('/')
 def index():
-    cursor = connection.cursor()
-    cursor.execute("""
+    with connection.cursor() as cursor:
+    # cursor = connection.cursor()
+        cursor.execute("""
         SELECT product.title AS title, product.description AS description,
-                 product.price AS price, image.description AS image_description, image.image_url AS image_url
+                 product.price AS price, image.description AS image_description, image.image_url AS image_url,
+                 product.category_id AS category_id
                  FROM product 
                  INNER JOIN image
                  ON image.product_id = product.id
                  """)
-    slides = cursor.fetchall()
+        slides = cursor.fetchall()
 
     return render_template('index.html', slides=slides)
 
@@ -54,20 +57,48 @@ def index():
 #
 #     return links
 #
-#
-@app.route('/<category_id>')
+@app.route('/category/<int:category_id>')
 def categories(category_id):
-    cursor = connection.cursor()
-    cursor.execute("""
-            SELECT product.title AS title, product.description AS description,
-                     product.price AS price, image.description AS image_description, image.image_url AS image_url
-                     FROM product 
-                     INNER JOIN image
-                     ON image.product_id = product.id
-                     WHERE category_id={}
-                     """.format(category_id))
-    slides = cursor.fetchall()
-    return render_template('index.html', slides=slides)
+   # links=generate_links()
+    with connection.cursor() as cursor:
+
+        sql = '''
+        SELECT p.title AS title,
+               p.category_id AS category_id,
+               p.description AS description,
+               p.price AS price, 
+               i.description AS image_description,
+               i.image_url AS image_url
+        FROM product p 
+        LEFT JOIN image i
+        ON i.product_id = p.id
+        WHERE category_id = %s
+        '''
+        cursor.execute(sql, (category_id,))
+        products = cursor.fetchall()
+        cursor.execute('''
+        SELECT title
+        FROM category
+        WHERE id = %s
+        ''', (category_id,))
+        category_id = cursor.fetchone()
+
+        return render_template('category.html', products=products)
+
+# @app.route('/<category_id>')
+# def categories(category_id):
+#     with connection.cursor() as cursor:
+#
+#         cursor.execute("""
+#             SELECT product.title AS title, product.description AS description,
+#                      product.price AS price, image.description AS image_description, image.image_url AS image_url
+#                      FROM product
+#                      INNER JOIN image
+#                      ON image.product_id = product.id
+#                      WHERE category_id={}
+#                      """.format(category_id))
+#         slides = cursor.fetchall()
+#         return render_template('index.html', slides=slides)
 
 # @app.route('/user/<username>')
 # def hello_user(username=None):

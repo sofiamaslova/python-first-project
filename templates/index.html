@@ -38,7 +38,7 @@
                     <div class="carousel-caption text-left" width=50% height="400px" align="center">
                         <h1>{{ slide.title }}</h1>
                         <p>{{ slide.description }}</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Закажи сейчас</a></p>
+                        <p><a class="btn btn-lg btn-primary" href=" {{ url_for('categories', category_id=slide.category_id) }}" role="button">Закажи сейчас</a></p>
                     </div>
                 </div>
             {% endfor %}
