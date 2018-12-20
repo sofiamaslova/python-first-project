@@ -24,20 +24,20 @@
                     class="{%  if loop.first %}active{% endif %}"</li>
             {% endfor %}
         </ol>
-        <div class="carousel-inner" width=50% height="400px" align="center">
+        <div class="carousel-inner" align="center">
             {% set class = '' %}
             {% for slide in slides %}
                 {% if loop.first %}
                     {% set class = 'active' %}
                 {% endif %}
-                <div class="carousel-item {{ class }}" width=50% height="400px" align="center">
+                <div class="carousel-item {{ class }}" align="center">
                     <img width=50%
                          height="400px"
-                         src="{{ slide.image_src }}"
-                         alt="{{ slide.title_src }}">
+                         src="{{ slide.image_url }}"
+                         alt="{{ slide.subheading }}">
                     <div class="carousel-caption text-left" width=50% height="400px" align="center">
                         <h1>{{ slide.heading }}</h1>
-                        <p>{{ slide.explanation }}</p>
+                        <p>{{ slide.subheading }}</p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button">Ð—Ð°Ð¿Ð¸ÑˆÐ¸ÑÑŒ ÑƒÐ¶Ðµ ÑÐµÐ³Ð¾Ð´Ð½Ñ</a></p>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
         {% for product in slides %}
             <div class="card" style="width:400px">
                 <img class="card-img-top"
-                     src="{{ product.image_src }}"
+                     src="{{ product.image_url }}"
                      alt="{{ product.title_src }}" />
                 <div class="card-body">
                     <h5 class="card-title">{{  product.heading }}</h5>

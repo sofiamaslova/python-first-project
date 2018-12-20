@@ -1,8 +1,7 @@
 import pymysql
 from flask import Flask, url_for, render_template
+from Repository_shop import shop
 app = Flask(__name__)  # __main__
-
-
 
 connection = pymysql.connect(
     host='192.168.33.10',
@@ -25,17 +24,26 @@ def test():
 
 @app.route('/')
 def index():
-    with connection.cursor() as cursor:
-    # cursor = connection.cursor()
-        cursor.execute("""
-        SELECT product.title AS title, product.description AS description,
-                 product.price AS price, image.description AS image_description, image.image_url AS image_url,
-                 product.category_id AS category_id
-                 FROM product 
-                 INNER JOIN image
-                 ON image.product_id = product.id
-                 """)
-        slides = cursor.fetchall()
+    categories = shop.find_all_categories()
+    slides = list()
+    for x in categories:
+        slide = {
+            'category_id': x.get('id'),
+            'heading': x.get('title'),
+            'image_title': x.get('title'),
+            'subheading': x.get('description'),
+            'image_url': x.get('image_url')
+        }
+        slides.append(slide)
+            #       cursor.execute("""
+            # SELECT product.title AS title, product.description AS description,
+            #          product.price AS price, image.description AS image_description, image.image_url AS image_url,
+            #          product.category_id AS category_id
+            #          FROM product
+            #          INNER JOIN image
+            #          ON image.product_id = product.id
+            #          """)
+            # slides = cursor.fetchall()
 
     return render_template('index.html', slides=slides)
 
@@ -58,32 +66,11 @@ def index():
 #     return links
 #
 @app.route('/category/<int:category_id>')
-def categories(category_id):
-   # links=generate_links()
-    with connection.cursor() as cursor:
+def find_category():
+     category = shop.find_category(category_id)
+     products = shop.find_products_by_category(category_id)
 
-        sql = '''
-        SELECT p.title AS title,
-               p.category_id AS category_id,
-               p.description AS description,
-               p.price AS price, 
-               i.description AS image_description,
-               i.image_url AS image_url
-        FROM product p 
-        LEFT JOIN image i
-        ON i.product_id = p.id
-        WHERE category_id = %s
-        '''
-        cursor.execute(sql, (category_id,))
-        products = cursor.fetchall()
-        cursor.execute('''
-        SELECT title
-        FROM category
-        WHERE id = %s
-        ''', (category_id,))
-        category_id = cursor.fetchone()
-
-        return render_template('category.html', products=products)
+     return render_template('category.html', products=products)
 
 # @app.route('/<category_id>')
 # def categories(category_id):
