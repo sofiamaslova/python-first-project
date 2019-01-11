@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}Ваш заказ{% endblock %}
+
+{% block content %}
+<script language = 'javascript'>
+var x = "100";
+var y = "10";
+var z = x * y;
+document.getElementById("demo").innerHTML = z;
+</script>
+    <h2>Ваш Заказ</h2>
+  <p>Вы выбрали следующие позиции для вашего заказа</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Наименование</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Итого</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <img width="50px" hight="50px" src="https://flager.ru/172-tm_large_default/kupit-flag-italii.jpg"</td>
+                <td>Туристическая путевка в Италию на 8 дней</td>
+                <td name="price1" value="80000" >80000</td>
+                <td><input type="text" name="input1"></td>
+                <td id="itogo1">=
+                    <script language = 'javascript'>
+                      var x = price1;
+                      var y = input1;
+                      var z = x * y;
+                      document.getElementById("itogo1").innerHTML = z;
+                    </script></td>
+            </tr>
+            <tr>
+                <td colspan="4" align=>Итого:</td>
+                <td> 50000</td>
+             </tr>
+        </tbody>
+
+    </table>
+{% endblock %}

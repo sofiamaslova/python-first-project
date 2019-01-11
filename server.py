@@ -22,6 +22,11 @@ def test():
     return str(result)
 
 
+@app.route('/shoopingcart/')
+def cart():
+    return render_template('shoopingcart.html')
+
+
 @app.route('/')
 def index():
     categories = shop.find_all_categories()
