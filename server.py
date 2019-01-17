@@ -23,8 +23,51 @@ def test():
 
 
 @app.route('/shoopingcart/')
-def cart():
-    return render_template('shoopingcart.html')
+
+def card():
+    carts = [
+        {
+            "id": "1",
+            "name": "Ноутбук Lenovo",
+            "price": 18000,
+            "img": "img/cars/notebook_lenovo.jpg",
+            "amount": 1
+        },
+        {
+            "id": "2",
+            "name": "Фотокамера Nikon",
+            "price": 25000,
+            "img": "img/cars/camera_nikon.jpg",
+            "amount": 1
+        },
+        {
+            "id": "3",
+            "name": "Apple ipad",
+            "price": 35000,
+            "img": "img/cars/ipad.jpg",
+            "amount": 1
+        },
+        {
+            "id": "4",
+            "name": "Samsung Galaxy",
+            "price": 20000,
+            "img": "img/cars/phone_galaxy.jpg",
+            "amount": 1
+        },
+        {
+            "id": "5",
+            "name": "Телевизор SUPRA",
+            "price": 19000,
+            "img": "img/cars/tv_supra.jpg",
+            "amount": 1
+        }
+    ]
+    summa = 0
+    for cart in carts:
+        summa = summa + cart['price'] * cart['amount']
+
+
+    return render_template('shoopingcart.html', carts=carts, summa=summa)
 
 
 @app.route('/')
