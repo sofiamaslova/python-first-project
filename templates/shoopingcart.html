@@ -20,13 +20,14 @@
         </thead>
         <tbody>
         {% for cart in carts %}
-            <tr>
+            <tr class="cart-position">
                 <td> {{ cart.id }}</td>
                 <td> {{ cart.name }}</td>
-                <td> {{ cart.price }}</td>
-                <td><input type="button" name="{{ 'minus' + loop.index }}" value="-" OnClick=""/>{{ cart.amount }}
-                    <input type="button" name="plus" value="+"/></td>
-                <td> {{ cart.price * cart.amount }}</td>
+                <td> <span class="price">{{ cart.price }}</span></td>
+                <td> <input type="button" class="minus-button" value="-">
+                     <span class="amount">{{ cart.amount }}</span>
+                     <input type="button" class="plus-button" value="+"></td>
+                <td> <span class="total-row">{{ cart.price * cart.amount }}</span></td>
 
             </tr>
 
@@ -43,6 +44,7 @@
 {% endblock %}
 
 {%  block javascripts %}
-        <script src="static/jquery-3.3.1.min.js" type="text/javascript"></script>
-     <script src="static/underscore-min.js" type="text/javascript"></script>
+        <script src="/static/jquery-3.3.1.min.js" type="text/javascript"></script>
+     <script src="/static/underscore-min.js" type="text/javascript"></script>
+    <script src="/static/script.js" type="text/javascript"></script>
 {% endblock %}

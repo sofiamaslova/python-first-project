@@ -38,7 +38,7 @@ def card():
             "name": "Фотокамера Nikon",
             "price": 25000,
             "img": "img/cars/camera_nikon.jpg",
-            "amount": 1
+            "amount": 2
         },
         {
             "id": "3",
