@@ -1,0 +1,3 @@
+CREATE SCHEMA `Shop_Electronic` DEFAULT CHARACTER SET utf8 ;
+GRANT ALL ON `Shop_Electronic`.* TO 'remote_user'@'%';
+
